@@ -208,7 +208,13 @@
     justify-content: space-between;
   }
 
-  .nav-logo { height: 64px; width: auto; }
+  .nav-logo { height: 100px; width: auto; transition: height 0.3s ease; }
+  .navbar.scrolled .nav-logo { height: 75px; }
+
+  @media (max-width: 767px) {
+    .nav-logo { height: 72px; }
+    .navbar.scrolled .nav-logo { height: 60px; }
+  }
 
   .nav-links {
     display: none;

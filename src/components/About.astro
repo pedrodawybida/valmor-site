@@ -1,0 +1,181 @@
+---
+---
+<section id="sobre" class="team-section">
+  <div class="container">
+    <div class="team-header">
+      <span class="section-eyebrow">Nosso Escritório</span>
+      <h2 class="section-title">Nossa <span class="text-gold">Equipe</span></h2>
+      <p class="team-intro">
+        Profissionais altamente qualificados e dedicados a lutar pelo seu benefício com excelência, agilidade e atendimento humanizado.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="/assets/valmor-nobg.png" alt="Dr. Valmor Alves" class="team-img" />
+        <div class="team-overlay">
+          <h3 class="team-name">Dr. Valmor Alves</h3>
+          <span class="team-role">Sócio-Fundador</span>
+          <p class="team-desc">Com mais de 10 anos de dedicação exclusiva ao Direito Previdenciário, guiando o escritório com excelência.</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="/assets/rodie-nobg.png" alt="Dr. Rodrigo Dietzsch" class="team-img" />
+        <div class="team-overlay">
+          <h3 class="team-name">Dr. Rodrigo Dietzsch</h3>
+          <span class="team-role">Advogado</span>
+          <p class="team-desc">Atuação focada na análise estratégica de processos e recursos rápidos contra negativas do INSS.</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="/assets/pedro-nobg.png" alt="Pedro Dawybida" class="team-img" />
+        <div class="team-overlay">
+          <h3 class="team-name">Pedro Dawybida</h3>
+          <span class="team-role">Assessor Previdenciário</span>
+          <p class="team-desc">Atendimento humanizado e ágil, organizando seus documentos para você dar entrada com segurança.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-cta">
+      <a
+        href="https://wa.me/554198959929?text=Ol%C3%A1%21%20Gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20sobre%20meu%20caso."
+        target="_blank"
+        class="btn btn-gold"
+      >
+        Falar com a Equipe
+      </a>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .team-section {
+    background: var(--off-white);
+    padding: var(--s16) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .team-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--s12);
+  }
+
+  .team-header .section-title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    margin-bottom: var(--s4);
+  }
+
+  .team-intro {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s6);
+  }
+
+  .team-card {
+    position: relative;
+    height: 480px;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    /* Fundo claro para contrastar bem com os ternos escuros */
+    background: linear-gradient(135deg, #ffffff 0%, #e9e5d8 100%);
+    cursor: pointer;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+  }
+
+  .team-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 5%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+  }
+
+  /* Quando passa o mouse, a opacidade da foto fica bem baixa */
+  .team-card:hover .team-img {
+    opacity: 0.15;
+    transform: scale(1.08);
+  }
+
+  .team-overlay {
+    position: absolute;
+    inset: 0;
+    padding: var(--s6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Mostra a descrição ao passar o mouse */
+  .team-card:hover .team-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .team-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    font-family: var(--serif);
+    margin-bottom: 4px;
+  }
+
+  .team-role {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: var(--s4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--sans);
+  }
+
+  .team-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-family: var(--sans);
+    max-width: 90%;
+  }
+
+  .team-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--s12);
+  }
+
+  @media (max-width: 991px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 767px) {
+    .team-section { padding: var(--s12) 0; }
+    .team-grid { grid-template-columns: 1fr; }
+    .team-card { height: 420px; }
+  }
+</style>

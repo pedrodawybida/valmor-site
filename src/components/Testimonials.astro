@@ -1,0 +1,407 @@
+---
+const reviews = [
+  {
+    name: "Carol Ramirez",
+    text: "Excelente advogado previdenciário em Curitiba! O Dr. Valmor é muito atencioso, explica tudo de forma clara e transmite muita confiança. Conseguiu resolver meu problema com o INSS rápido!",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Gabriel Lins",
+    text: "Dr. Valmor é um profissional altamente qualificado, comprometido com a ética e a excelência no atendimento. Sempre busca as melhores soluções jurídicas para seus clientes, atuando com transparência, seriedade e profundo conhecimento da lei.",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Luana Debora",
+    text: "Dr. Valmor é um excelente profissional. Muito atencioso e dedicado, explica tudo com muita clareza e passa muita segurança. Recomendo com certeza!",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Felipe Kenji",
+    text: "O Dr. Valmor é um excelente advogado previdenciário, muito atencioso e comprometido. Explicou todos os detalhes do processo contra o INSS de forma clara e acompanhou de perto. Recomendo!",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Anna Pastana",
+    text: "Excelente advogado.. Confiei nele e ele me entregou resultados incríveis... Vale a pena confiar nos seus serviços, me explicou direitinho todos meus direitos.. só gratidão!",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Karen Candido",
+    text: "Excelente profissional, extremamente capacitado e ético. Indico de olhos fechados!",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Tatiane Silva",
+    text: "Perfeito, super ágil, atenciosos em cada detalhe. Atendimento muito bom.",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Kaio Trajano Barreto",
+    text: "Parabéns, Dr. Valmor, por exercer a advocacia com tanto brilho e dedicação.",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Kalob Tv",
+    text: "Muito bom! Boa explicação e ótimo atendimento!! Ajuda muito e tira todas as dúvidas! Indico!!",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "João Guilherme",
+    text: "Competente, útil, focado, impecável, seguro, gente boa, ágil. Recomendo muito!",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Gheur e Czizyk Advocacia",
+    text: "Parceiro de confiança do nosso escritório para atendimento das demandas previdenciárias, é um prazer trabalhar com um advogado competente e atencioso como o Dr. Valmor!",
+    stars: 5,
+    photo: null,
+  },
+  {
+    name: "Duda e Gui",
+    text: "Muito bom no trabalho que faz, esclarece todas as dúvidas, excelente trabalho!",
+    stars: 5,
+    photo: null,
+  },
+];
+
+const avatarColors = ["#4285F4", "#EA4335", "#FBBC04", "#34A853", "#1967D2", "#E37400", "#0D652D", "#185ABC", "#C5221F", "#F9AB00", "#1E8E3E", "#7B1FA2"];
+---
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<section id="avaliacoes" class="reviews-section">
+  <div class="container">
+    <div class="reviews-header">
+      <span class="section-eyebrow">Depoimentos</span>
+      <h2 class="reviews-title">O que nossos clientes dizem</h2>
+      <p class="reviews-subtitle">Avaliações reais de quem teve seus direitos garantidos com a Dr. Valmor Alves.</p>
+    </div>
+
+    <!-- Widget principal -->
+    <div class="gw-widget">
+
+      <!-- ESQUERDA: Badge com nota -->
+      <div class="gw-badge">
+        <p class="gw-badge-label">EXCELENTE</p>
+        <div class="gw-badge-rating">
+          <span class="gw-badge-stars">★★★★★</span>
+        </div>
+        <p class="gw-badge-count">Com base em <strong>88 avaliações</strong></p>
+        <img class="gw-google-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" width="88" height="30" />
+      </div>
+
+      <!-- DIREITA: Carrossel de reviews -->
+      <div class="gw-carousel-wrap">
+        <div class="swiper gw-swiper">
+          <div class="swiper-wrapper">
+            {reviews.map((r, i) => (
+              <div class="swiper-slide">
+                <div class="gw-card">
+                  <div class="gw-card-top">
+                    <div class="gw-card-avatar" style={`background-color: ${avatarColors[i % avatarColors.length]}`}>
+                      {r.name.charAt(0)}
+                    </div>
+                    <div class="gw-card-meta">
+                      <span class="gw-card-name">{r.name}</span>
+                    </div>
+                    <img class="gw-card-g" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" width="20" height="20" />
+                  </div>
+                  <div class="gw-card-stars">
+                    <span class="gw-stars-row">{"★".repeat(r.stars)}</span>
+                    <svg class="gw-verified" viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="12" r="10" fill="#4285F4"/><path d="M10.5 15.5l-4-4 1.4-1.4 2.6 2.6 6.6-6.6 1.4 1.4-8 8z" fill="#fff"/></svg>
+                  </div>
+                  <p class="gw-card-text">{r.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <!-- Botão de Navegar -->
+        <button class="gw-nav gw-nav-next" id="gwNext" aria-label="Próximo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Barra verde do Google embaixo -->
+    <div class="gw-bar">
+      <div class="gw-bar-fill"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var sw = new Swiper(".gw-swiper", {
+      slidesPerView: 1,
+      spaceBetween: 14,
+      grabCursor: true,
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        640: { slidesPerView: 2, spaceBetween: 14 },
+        1024: { slidesPerView: 2, spaceBetween: 14 },
+      },
+    });
+
+    var nextBtn = document.getElementById("gwNext");
+    if (nextBtn) nextBtn.addEventListener("click", function () { sw.slideNext(); });
+  });
+</script>
+
+<style is:global>
+  .reviews-section {
+    padding: var(--s16) 0;
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .reviews-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-petroleum-dark, #071626);
+    margin-bottom: 10px;
+  }
+
+  .reviews-subtitle {
+    font-size: 1.1rem;
+    color: #5f6368;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ─── Widget principal ─── */
+  .gw-widget {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+  @media (min-width: 768px) {
+    .gw-widget { flex-direction: row; }
+  }
+
+  /* ─── Badge (esquerda) ─── */
+  .gw-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 36px 30px;
+    border-bottom: 1px solid #e0e0e0;
+    min-width: 240px;
+    background: #fafafa;
+  }
+  @media (min-width: 768px) {
+    .gw-badge {
+      border-bottom: none;
+      border-right: 1px solid #e0e0e0;
+    }
+  }
+  .gw-badge-label {
+    font-size: 18px;
+    font-weight: 900;
+    color: #202124;
+    letter-spacing: 1px;
+    margin: 0 0 4px 0;
+  }
+  .gw-badge-rating {
+    margin-bottom: 6px;
+  }
+  .gw-badge-stars {
+    font-size: 30px;
+    color: #fbbc04;
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+  .gw-badge-count {
+    font-size: 13px;
+    color: #5f6368;
+    margin: 0 0 16px 0;
+  }
+  .gw-badge-count strong {
+    color: #202124;
+    font-weight: 600;
+  }
+  .gw-google-logo {
+    width: 88px;
+    height: auto;
+  }
+
+  /* ─── Carousel (direita) ─── */
+  .gw-carousel-wrap {
+    flex: 1;
+    padding: 20px 16px 20px 16px;
+    position: relative;
+    min-width: 0; /* necessário para o flex + swiper funcionar */
+  }
+  .gw-swiper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* ─── Card ─── */
+  .gw-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 18px 16px 14px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 200px;
+  }
+  .gw-card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .gw-card-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .gw-card-meta {
+    flex: 1;
+    min-width: 0;
+  }
+  .gw-card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #202124;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .gw-card-g {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .gw-card-stars {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .gw-stars-row {
+    color: #fbbc04;
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .gw-verified {
+    flex-shrink: 0;
+  }
+  .gw-card-text {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #3c4043;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ─── Botão Next ─── */
+  .gw-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,.12);
+    z-index: 5;
+    color: #5f6368;
+    transition: background 0.2s, color 0.2s;
+  }
+  .gw-nav:hover {
+    background: #f1f3f4;
+    color: #202124;
+  }
+  .gw-nav-next {
+    right: -4px;
+  }
+
+  /* ─── Barra verde do Google ─── */
+  .gw-bar {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 4px;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    display: flex;
+  }
+  .gw-bar-fill {
+    flex: 1;
+    background: linear-gradient(90deg, #4285F4 0%, #4285F4 25%, #EA4335 25%, #EA4335 50%, #FBBC05 50%, #FBBC05 75%, #34A853 75%, #34A853 100%);
+  }
+
+  /* ─── Swiper slide height fix ─── */
+  .gw-swiper .swiper-slide {
+    height: auto;
+  }
+
+  /* ─── Mobile adjustments ─── */
+  @media (max-width: 767px) {
+    .gw-nav {
+      display: none;
+    }
+    .gw-carousel-wrap {
+      padding: 16px 10px;
+    }
+    .gw-badge {
+      padding: 24px 20px;
+    }
+    .reviews-section {
+      padding: var(--s12) 0;
+    }
+  }
+</style>

@@ -1,0 +1,390 @@
+---
+const benefits = [
+  {
+    id: "bpc-loas",
+    emoji: "🧓",
+    label: "BPC / LOAS",
+    hook: "Idoso acima de 65 anos ou pessoa com deficiência de baixa renda?",
+    headline: "BPC / LOAS: 1 salário mínimo\npara quem mais precisa",
+    desc: "O Benefício de Prestação Continuada é pago pelo governo a idosos acima de 65 anos e pessoas com deficiência de qualquer idade — sem precisar ter contribuído para o INSS. Se o INSS negou, há grandes chances de reversão judicial.",
+    bullets: [
+      "Autismo, TDAH severo ou outras deficiências na família",
+      "Renda familiar muito baixa (até ¼ do salário mínimo por pessoa)",
+      "Não exige que a pessoa tenha pago o INSS",
+      "Se o INSS negou, entramos com ação para reverter e pagar os atrasados",
+    ],
+    waText: "Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20o%20BPC%2FLOAS.",
+  },
+  {
+    id: "auxilio-doenca",
+    emoji: "🏥",
+    label: "Auxílio-Doença",
+    hook: "Está de licença médica e o INSS negou ou cortou seu benefício?",
+    headline: "Auxílio-Doença:\nnão deixe o perito ter a última palavra",
+    desc: "A perícia médica do INSS nega benefícios legítimos com frequência. Documentação inadequada e laudos sem a linguagem correta são as principais causas. Contestamos a negativa e buscamos o pagamento retroativo desde o pedido original.",
+    bullets: [
+      "Para quem precisou afastar do trabalho por cirurgia grave",
+      "Para quem está com depressão severa ou burnout",
+      "O perito do INSS não é o dono da verdade — podemos recorrer",
+      "A Justiça obriga o INSS a pagar todo o tempo que você ficou sem receber",
+    ],
+    waText: "Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20o%20Aux%C3%ADlio-Doen%C3%A7a.",
+  },
+  {
+    id: "auxilio-acidente",
+    emoji: "⚠️",
+    label: "Auxílio-Acidente",
+    hook: "Sofreu um acidente e ficou com sequelas? A maioria não sabe que tem direito.",
+    headline: "Auxílio-Acidente:\nindenização mensal por sequelas permanentes",
+    desc: "Se você sofreu acidente de qualquer natureza e ficou com sequela permanente que reduz sua capacidade de trabalho, tem direito ao Auxílio-Acidente — mesmo voltando a trabalhar normalmente. É pago pelo INSS pelo resto da vida.",
+    bullets: [
+      "Quebrou a perna de moto e ficou com pino? Tem direito.",
+      "Perdeu a ponta do dedo na máquina? Tem direito.",
+      "Pago todos os meses, mesmo que você continue trabalhando normalmente",
+      "Pode ser acidente de trânsito, no trabalho ou até em casa",
+    ],
+    waText: "Ol%C3%A1!%20Sofri%20um%20acidente%20e%20quero%20saber%20se%20tenho%20direito%20ao%20Aux%C3%ADlio-Acidente.",
+  },
+  {
+    id: "auxilio-maternidade",
+    emoji: "🤱",
+    label: "Aux. Maternidade",
+    hook: "Teve bebê, está desempregada ou é MEI/autônoma e o INSS negou?",
+    headline: "Auxílio-Maternidade:\nproteção que vai além do vínculo formal",
+    desc: 'O Salário-Maternidade protege trabalhadoras formais, MEIs, autônomas e até desempregadas. O "período de graça" garante o benefício mesmo sem contribuição recente. A negativa do INSS neste caso é quase sempre contestável.',
+    bullets: [
+      "Para mães que saíram do emprego e engravidaram em seguida",
+      "Para mulheres que trabalham por conta própria (autônomas/MEI)",
+      "Válido também para adoção ou guarda judicial",
+      "Se você parou de pagar o INSS recentemente, ainda pode ter direito",
+    ],
+    waText: "Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20o%20Aux%C3%ADlio-Maternidade.",
+  },
+];
+---
+
+<section id="beneficios" class="benefits-section">
+  <div class="container">
+
+    <div class="benefits-header">
+      <span class="section-eyebrow">Atuação Especializada</span>
+      <h2 class="section-title">Qual é a sua situação?</h2>
+      <p class="section-body">
+        Escolha o benefício e entenda seus direitos. Atuamos em negativas,
+        recursos e pedidos ainda não iniciados — análise 100% gratuita.
+      </p>
+    </div>
+
+    <!-- Tab navigation -->
+    <div class="tabs-nav" role="tablist" aria-label="Benefícios previdenciários">
+      {benefits.map((b, i) => (
+        <button
+          class={`tab-btn${i === 0 ? " active" : ""}`}
+          role="tab"
+          aria-selected={i === 0 ? "true" : "false"}
+          aria-controls={`panel-${b.id}`}
+          id={`tab-${b.id}`}
+          data-tab={b.id}
+        >
+          <span class="tab-emoji" aria-hidden="true">{b.emoji}</span>
+          <span class="tab-label">{b.label}</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Tab panels -->
+    <div class="tabs-panels">
+      {benefits.map((b, i) => (
+        <div
+          class={`benefit-panel${i === 0 ? " active" : ""}`}
+          role="tabpanel"
+          id={`panel-${b.id}`}
+          aria-labelledby={`tab-${b.id}`}
+          hidden={i !== 0}
+        >
+          <div class="panel-inner">
+
+            <!-- Left: copy -->
+            <div class="panel-copy">
+              <p class="panel-hook">{b.hook}</p>
+              <h3 class="panel-headline">
+                {b.headline.split('\n').map((line, idx) => (
+                  <>{line}{idx === 0 ? <br/> : null}</>
+                ))}
+              </h3>
+              <p class="panel-desc">{b.desc}</p>
+              <ul class="panel-bullets" role="list">
+                {b.bullets.map(bullet => (
+                  <li class="panel-bullet" role="listitem">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <circle cx="10" cy="10" r="10" fill="rgba(201,168,76,0.15)"/>
+                      <path d="M6 10.5l3 3 5-6" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Right: CTA card -->
+            <div class="panel-card">
+              <div class="panel-card-emoji" aria-hidden="true">{b.emoji}</div>
+              <p class="panel-card-title">{b.label}</p>
+              <p class="panel-card-body">
+                Fale com um especialista agora. Análise gratuita, sem compromisso.
+              </p>
+              <a
+                href={`https://wa.me/554198959929?text=${b.waText}`}
+                target="_blank"
+                class="btn btn-gold panel-cta"
+                id={`cta-${b.id}`}
+                aria-label={`Falar sobre ${b.label} no WhatsApp`}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                </svg>
+                Falar sobre {b.label}
+              </a>
+              <p class="panel-card-guarantee">
+                ✓ Gratuito · ✓ Sem compromisso · ✓ Resposta rápida
+              </p>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Tab switching
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+  const panels = document.querySelectorAll<HTMLElement>('.benefit-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.dataset.tab;
+
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      panels.forEach(p => {
+        const isTarget = p.id === `panel-${targetId}`;
+        p.classList.toggle('active', isTarget);
+        p.hidden = !isTarget;
+      });
+    });
+  });
+</script>
+
+<style is:global>
+  .benefits-section {
+    padding: var(--s8) 0;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+  }
+
+  .benefits-header {
+    max-width: 580px;
+    margin-bottom: var(--s6);
+  }
+
+  .benefits-header .section-title {
+    margin-bottom: var(--s2);
+    line-height: 1.12;
+  }
+
+  /* ── Tab nav ── */
+  .tabs-nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0;
+  }
+
+  .tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    border-radius: var(--r-sm) var(--r-sm) 0 0;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tab-btn:hover {
+    color: var(--navy);
+    background: var(--off-white);
+  }
+
+  .tab-btn.active {
+    color: var(--navy);
+    border-bottom-color: var(--gold);
+    background: transparent;
+  }
+
+  .tab-emoji { font-size: 1rem; }
+
+  /* ── Panels ── */
+  .benefit-panel {
+    display: none;
+    animation: panelIn 0.3s ease both;
+  }
+  .benefit-panel.active { display: block; }
+
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel-inner {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: var(--s6);
+    align-items: start;
+  }
+
+  /* Copy side */
+  .panel-hook {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: var(--sans);
+    margin-bottom: 12px;
+  }
+
+  .panel-headline {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+    margin-bottom: 16px;
+  }
+
+  .panel-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 520px;
+  }
+
+  .panel-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .panel-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-family: var(--sans);
+    line-height: 1.5;
+  }
+
+  .panel-bullet svg { flex-shrink: 0; margin-top: 2px; }
+
+  /* Card side */
+  .panel-card {
+    background: var(--navy);
+    border-radius: var(--r-xl);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    position: sticky;
+    top: 100px;
+    box-shadow: 0 16px 40px rgba(10,22,40,0.15);
+  }
+
+  .panel-card-emoji {
+    font-size: 2.8rem;
+    line-height: 1;
+    background: rgba(255,255,255,0.06);
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .panel-card-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .panel-card-body {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.52);
+    line-height: 1.65;
+    font-family: var(--sans);
+  }
+
+  .panel-cta {
+    width: 100%;
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 16px;
+    border-radius: var(--r-md);
+    gap: 10px;
+    justify-content: center;
+    box-shadow: 0 6px 28px rgba(201,168,76,0.35);
+  }
+
+  .panel-card-guarantee {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.30);
+    font-family: var(--sans);
+    letter-spacing: 0.3px;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 960px) {
+    .panel-inner {
+      grid-template-columns: 1fr;
+    }
+    .panel-card {
+      position: static;
+      max-width: 480px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .benefits-section { padding: var(--s12) 0; }
+    .tabs-nav { gap: 4px; }
+    .tab-btn {
+      padding: 10px 14px;
+      font-size: 0.78rem;
+    }
+    .tab-emoji { font-size: 0.9rem; }
+    .panel-headline { font-size: clamp(1.5rem, 6vw, 2rem); }
+    .panel-card { padding: 28px 22px; }
+  }
+</style>

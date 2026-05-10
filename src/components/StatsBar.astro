@@ -1,0 +1,75 @@
+---
+const stats = [
+  { value: "88", label: "avaliações 5★ no Google" },
+  { value: "100%", label: "online · todo o Brasil" },
+  { value: "R$0", label: "custo adiantado — pagamento só no êxito" },
+];
+---
+
+<div class="statsbar" role="list" aria-label="Números do escritório">
+  {stats.map(s => (
+    <div class="stat-item" role="listitem">
+      <strong class="stat-value">{s.value}</strong>
+      <span class="stat-label">{s.label}</span>
+    </div>
+  ))}
+</div>
+
+<style is:global>
+  .statsbar {
+    background: var(--navy);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px 24px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    gap: 8px;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-value {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    font-family: var(--sans);
+    font-weight: 500;
+    line-height: 1.4;
+    max-width: 260px;
+    letter-spacing: 0.2px;
+  }
+
+  @media (max-width: 767px) {
+    .statsbar {
+      grid-template-columns: 1fr 1fr;
+    }
+    .stat-item {
+      border-right: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 20px 16px;
+    }
+    .stat-item:nth-child(2n) { border-right: none; }
+    .stat-item:nth-child(3) { 
+      grid-column: span 2; 
+      border-right: none; 
+      border-bottom: none; 
+    }
+    .stat-value { font-size: 1.45rem; }
+  }
+</style>

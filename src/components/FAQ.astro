@@ -1,0 +1,177 @@
+---
+const faqs = [
+  {
+    q: "Preciso ter sido negado pelo INSS para vocês me atenderem?",
+    a: "Não. Atuamos nos dois momentos: se você ainda não deu entrada, cuidamos de todo o processo desde o início — aumentando muito as chances de aprovação na primeira análise. Se já foi negado, recorremos administrativamente ou por ação judicial."
+  },
+  {
+    q: "Quem tem direito ao BPC/LOAS?",
+    a: "Idosos com 65 anos ou mais e pessoas com deficiência de qualquer idade, com renda familiar per capita inferior a ¼ do salário mínimo. O BPC não exige contribuição prévia ao INSS e pode ser acumulado com outros benefícios assistenciais."
+  },
+  {
+    q: "O perito do INSS negou meu Auxílio-Doença. Posso reverter?",
+    a: "Sim, e é mais comum do que parece. A negativa do perito pode ser contestada com laudo médico completo ou, se necessário, com ação judicial. Conseguimos o pagamento retroativo desde a data do pedido original — não apenas da liminar."
+  },
+  {
+    q: "Sofri um acidente e voltei a trabalhar. Ainda tenho direito ao Auxílio-Acidente?",
+    a: "Sim! O Auxílio-Acidente é pago exatamente para quem voltou ao trabalho, mas ficou com sequela permanente que reduza sua capacidade. Esse é o benefício que mais pessoas deixam de receber por não saber que têm direito."
+  },
+  {
+    q: "Estou desempregada e tive bebê. Tenho direito ao Salário-Maternidade?",
+    a: "Pode ter sim. O 'período de graça' mantém a qualidade de segurada por 12 a 24 meses após o último pagamento ao INSS, dependendo do tempo de contribuição. Fazemos a análise gratuita para confirmar o seu caso específico."
+  },
+  {
+    q: "Quanto custa? Tem algum valor adiantado?",
+    a: "A análise inicial é 100% gratuita, sem qualquer compromisso. Em praticamente todos os casos, os honorários são cobrados apenas ao final, em caso de êxito — ou seja, você não paga nada adiantado e não paga se não ganhar."
+  },
+  {
+    q: "Vocês atendem em todo o Brasil?",
+    a: "Sim. O atendimento é 100% online pelo WhatsApp. Não é necessário visitar o escritório em nenhuma etapa. Documentos são enviados de forma segura pelo próprio WhatsApp ou por link de upload."
+  },
+  {
+    q: "Quanto tempo demora para ter uma resposta ou decisão?",
+    a: "Respondemos o primeiro contato em minutos. A análise do caso geralmente fica pronta em 24 horas. O prazo para o benefício ser aprovado varia: pedidos administrativos levam de 45 a 90 dias; ações judiciais variam por região — mas buscamos liminares para casos urgentes."
+  },
+];
+---
+
+<section id="duvidas" class="faq-section">
+  <div class="container">
+
+    <div class="faq-top">
+      <div class="faq-header">
+        <span class="section-eyebrow">Dúvidas frequentes</span>
+        <h2 class="section-title">Tudo que você<br/>precisa saber</h2>
+      </div>
+      <div class="faq-side-cta">
+        <p class="faq-side-text">Sua dúvida não está aqui?</p>
+        <a
+          href="https://wa.me/554198959929?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20meu%20benef%C3%ADcio%20do%20INSS."
+          target="_blank"
+          class="btn btn-ghost-navy"
+          id="faq-cta"
+        >
+          Perguntar agora
+        </a>
+      </div>
+    </div>
+
+    <div class="faq-list" role="list">
+      {faqs.map((faq, i) => (
+        <details class="faq-item" role="listitem">
+          <summary class="faq-q" id={`faq-q-${i}`}>
+            <span>{faq.q}</span>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="faq-a" id={`faq-a-${i}`}>
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style is:global>
+  .faq-section {
+    background: var(--white);
+    padding: var(--s8) 0;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Top row */
+  .faq-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--s4);
+    margin-bottom: var(--s6);
+    flex-wrap: wrap;
+  }
+
+  .faq-header .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.12;
+  }
+
+  .faq-side-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .faq-side-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: var(--sans);
+  }
+
+  /* List */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 24px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--navy);
+    font-family: var(--sans);
+    transition: background 0.15s;
+    user-select: none;
+    line-height: 1.4;
+  }
+
+  .faq-q::-webkit-details-marker { display: none; }
+
+  .faq-item:hover > .faq-q { background: var(--off-white); }
+  .faq-item[open] > .faq-q  { background: var(--off-white); color: var(--gold); }
+  .faq-item[open] > .faq-q svg { stroke: var(--gold); }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--text-secondary);
+    transition: transform 0.25s ease;
+  }
+
+  .faq-item[open] .faq-icon { transform: rotate(180deg); }
+
+  .faq-a {
+    padding: 0 24px 20px;
+    background: var(--off-white);
+  }
+
+  .faq-a p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.78;
+  }
+
+  @media (max-width: 767px) {
+    .faq-section { padding: var(--s12) 0; }
+    .faq-top { flex-direction: column; align-items: flex-start; }
+    .faq-side-cta { align-items: flex-start; }
+    .faq-q { padding: 18px 20px; font-size: 0.9rem; }
+    .faq-a { padding: 0 20px 18px; }
+  }
+</style>

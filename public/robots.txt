@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Sitemap: https://valmoralves.adv.br/sitemap-index.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

@@ -1,0 +1,234 @@
+---
+const steps = [
+  {
+    n: "01",
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+    title: "Manda uma mensagem",
+    body: "Pelo WhatsApp, conte sua situação em poucas palavras. Sem formulário, sem senha do INSS, sem burocracia.",
+    chip: "Resposta em minutos"
+  },
+  {
+    n: "02",
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>`,
+    title: "Análise gratuita do seu caso",
+    body: "Avaliamos seus documentos, verificamos seu histórico no INSS e identificamos se há direito ao benefício — tudo gratuitamente.",
+    chip: "Sem custo, sem compromisso"
+  },
+  {
+    n: "03",
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>`,
+    title: "Cuidamos de tudo",
+    body: "Do pedido administrativo ao recurso judicial — você é informado em cada etapa. Sem precisar ir a nenhum lugar.",
+    chip: "100% online"
+  },
+  {
+    n: "04",
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    title: "Benefício aprovado",
+    body: "Você recebe o benefício mais os valores retroativos. Honorários apenas sobre o que você ganhar — não há cobrança se não houver resultado.",
+    chip: "Só paga se ganhar"
+  },
+];
+---
+
+<section id="como-funciona" class="how-section">
+  <div class="container">
+
+    <div class="how-header">
+      <span class="section-eyebrow">Como funciona</span>
+      <h2 class="section-title-light">
+        Do WhatsApp ao <em style="font-style:italic;color:var(--gold)">benefício aprovado</em><br/>em 4 passos
+      </h2>
+      <p class="how-sub">Sem burocracia, sem sair de casa. Todo o processo pelo celular.</p>
+    </div>
+
+    <div class="how-steps" role="list">
+      {steps.map((s) => (
+        <div class="how-step" role="listitem">
+          <div class="step-left">
+            <div class="step-icon" aria-hidden="true" set:html={s.icon} />
+            <div class="step-connector" aria-hidden="true"></div>
+          </div>
+          <div class="step-body">
+            <div class="step-meta">
+              <span class="step-n" aria-hidden="true">{s.n}</span>
+              <span class="step-chip">{s.chip}</span>
+            </div>
+            <h3 class="step-title">{s.title}</h3>
+            <p class="step-desc">{s.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="how-cta">
+      <a
+        href="https://wa.me/554198959929?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20se%20tenho%20direito%20a%20um%20benef%C3%ADcio%20do%20INSS."
+        target="_blank"
+        class="btn btn-gold how-btn"
+        id="how-cta"
+        aria-label="Iniciar processo pelo WhatsApp"
+      >
+        Começar agora — é gratuito
+      </a>
+      <p class="how-cta-note">Análise gratuita · Sem compromisso · Resposta rápida</p>
+    </div>
+
+  </div>
+</section>
+
+<style is:global>
+  .how-section {
+    background: var(--navy);
+    padding: var(--s8) 0;
+  }
+
+  .how-header {
+    max-width: 640px;
+    margin-bottom: var(--s8);
+  }
+
+  .how-header .section-eyebrow { margin-bottom: var(--s3); }
+
+  .how-header .section-title-light {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .how-sub {
+    font-size: 0.97rem;
+    color: rgba(255,255,255,0.42);
+    font-family: var(--sans);
+    line-height: 1.6;
+  }
+
+  /* Steps */
+  .how-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: var(--s8);
+  }
+
+  .how-step {
+    display: flex;
+    gap: 16px;
+    padding: 24px 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-collapse: collapse;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .how-step:hover { background: rgba(255,255,255,0.025); }
+
+  /* Icon col */
+  .step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .step-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--r-md);
+    background: rgba(201,168,76,0.10);
+    border: 1px solid rgba(201,168,76,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .step-connector {
+    width: 1px;
+    flex: 1;
+    background: rgba(255,255,255,0.07);
+    margin-top: 10px;
+    display: none;
+  }
+
+  /* Body */
+  .step-body { flex: 1; }
+
+  .step-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .step-n {
+    font-family: var(--serif);
+    font-size: 0.8rem;
+    color: var(--gold);
+    opacity: 0.6;
+    letter-spacing: 1px;
+  }
+
+  .step-chip {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(201,168,76,0.10);
+    color: var(--gold);
+    font-family: var(--sans);
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .step-title {
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.90);
+    margin-bottom: 10px;
+    letter-spacing: -0.1px;
+  }
+
+  .step-desc {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.42);
+    line-height: 1.68;
+  }
+
+  /* CTA */
+  .how-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .how-btn {
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: var(--r-md);
+    box-shadow: 0 6px 28px rgba(201,168,76,0.35);
+  }
+
+  .how-cta-note {
+    font-size: 0.74rem;
+    color: rgba(255,255,255,0.25);
+    font-family: var(--sans);
+  }
+
+  @media (max-width: 767px) {
+    .how-section { padding: var(--s12) 0; }
+    .how-header { margin-bottom: var(--s8); }
+    .how-steps {
+      grid-template-columns: 1fr;
+    }
+    .how-step { padding: 24px 20px; }
+    .step-icon { width: 40px; height: 40px; }
+    .how-cta { align-items: stretch; }
+    .how-btn { width: 100%; justify-content: center; font-size: 1rem; padding: 18px; }
+  }
+</style>

@@ -1,23 +1,214 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title = "Advogado Previdenciário Curitiba | Valmor Alves Advocacia", description = "Advogado previdenciário em Curitiba especialista em aposentadorias, BPC/LOAS, pensão por morte e planejamento previdenciário. Consulta gratuita. Atendimento online para todo o Brasil. OAB/PR." } = Astro.props;
+
+const siteUrl = "https://valmoralves.adv.br";
+const ogImage = `${siteUrl}/assets/og-image.png`;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-XXXXXXX'); // Substitua GTM-XXXXXXX pelo seu ID
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Meta Pixel Code -->
+    <script is:inline>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'SEU_PIXEL_ID_AQUI'); // Substitua pelo seu ID do Pixel
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- SEO Essenciais -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={siteUrl} />
+    
+    <!-- Geo Targeting - Curitiba/PR -->
+    <meta name="geo.region" content="BR-PR" />
+    <meta name="geo.placename" content="Curitiba" />
+    <meta name="geo.position" content="-25.4284;-49.2733" />
+    <meta name="ICBM" content="-25.4284, -49.2733" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    
+    <!-- Preconnect para performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Open Graph (Facebook/Instagram/LinkedIn) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Valmor Alves Advocacia" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <!-- Schema.org JSON-LD: LocalBusiness + Advogado -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LegalService",
+      "name": "Valmor Alves Advocacia e Consultoria",
+      "description": "Escritório de advocacia especializado em Direito Previdenciário em Curitiba. Atuamos com BPC/LOAS, Auxílio-Doença, Auxílio-Acidente e Salário-Maternidade.",
+      "url": siteUrl,
+      "telephone": "+55-41-98959929",
+      "image": ogImage,
+      "priceRange": "Consulta Gratuita",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Curitiba",
+        "addressRegion": "PR",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -25.4284,
+        "longitude": -49.2733
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "88",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Brasil"
+      },
+      "knowsAbout": [
+        "Direito Previdenciário",
+        "BPC/LOAS",
+        "Auxílio-Doença",
+        "Auxílio-Acidente",
+        "Salário-Maternidade",
+        "Benefícios do INSS",
+        "Advogado do INSS",
+        "Advogado Previdenciário"
+      ],
+      "sameAs": []
+    })} />
+    
+    <!-- Schema.org JSON-LD: FAQ -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O INSS negou meu Auxílio-Doença. O que fazer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mesmo com o benefício negado pelo perito do INSS, você pode reverter essa decisão na Justiça. Nós analisamos seus laudos médicos e entramos com uma ação judicial para garantir que você receba o benefício desde a data do pedido original."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quem tem direito ao BPC/LOAS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O BPC/LOAS é um benefício de um salário mínimo destinado a idosos acima de 65 anos e pessoas com deficiência de qualquer idade. É necessário comprovar baixa renda familiar (menor que 1/4 do salário mínimo por pessoa)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sofri um acidente e fiquei com sequelas. Tenho direito a algo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim! Se você sofreu um acidente e ficou com alguma sequela permanente que reduza sua capacidade de trabalho, você tem direito ao Auxílio-Acidente, uma indenização mensal paga pelo INSS que você pode receber mesmo voltando a trabalhar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Estou desempregada e tive bebê. Posso receber Salário-Maternidade?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende do seu 'período de graça'. Se você parou de contribuir recentemente ou se estava recebendo seguro-desemprego, você ainda mantém a qualidade de segurada e tem direito ao Salário-Maternidade. Fazemos a análise gratuita."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto custa a consulta? Preciso pagar algo adiantado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A análise inicial do seu caso é totalmente gratuita e sem compromisso. Trabalhamos com honorários no êxito, ou seja, na maioria dos casos o pagamento é feito apenas ao final do processo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vocês atendem pessoas de outras cidades?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim! Realizamos atendimento 100% online para todo o Brasil. Toda a comunicação e envio de documentos pode ser feita com total segurança pelo WhatsApp."
+          }
+        }
+      ]
+    })} />
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <slot />
+    
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/554198959929?text=Ol%C3%A1!%20O%20INSS%20negou%20meu%20benef%C3%ADcio%20e%20gostaria%20de%20uma%20an%C3%A1lise%20gratuita%20do%20meu%20caso." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="whatsapp-float"
+       aria-label="Fale conosco pelo WhatsApp">
+      <div class="whatsapp-pulse"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+      <span class="whatsapp-tooltip">Análise gratuita agora</span>
+    </a>
+  </body>
+</html>
